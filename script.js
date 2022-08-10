@@ -5,14 +5,14 @@ const input2 = document.getElementById('calculo2')
 const btn = document.getElementById('btnCalcular')
 const p = document.getElementById('result')
 
-// podemos "escuchar" eventos de elementos html usando js, esto se hace agregando
-// atributos como onClick (para button) u onChange (para input). Escribir js dentro 
-// de html es una mala práctica, por eso, "escuchar" los eventos se realiza usando 
-// funciones, por ejemplo:
+// Una mejor prácticas sería quitar el evento de html y añadirlo desde js usando
+// addEventListenner. Esta función recibe: (1) un evento especifico a "escuchar" y 
+// (2) el nombre descriptivo de la funcion que debe llamar dicho evento.
+btn.addEventListener('click', btnOnClick) 
+// Notemos que btnOnclick no lleva parentesis (), esto se debe a que los () ocacionarían
+// que js ejecutara una función ¿ya ejecutada?.
+
 function btnOnClick(){
     concatenacion = input1.value + input2.value
     p.innerText = 'Resultado: ' + concatenacion
 }
-
-// aunque el ejemplo anterior parece lo más adecuada, añadir eventos en html ocasiona
-// archivos caóticos, por lo que, una mejor práctica sería... (ver la siguiente clase).
