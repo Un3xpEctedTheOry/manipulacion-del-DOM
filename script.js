@@ -1,45 +1,18 @@
-// leemos elementos html con querySelector
+// leemos elementos html
 const h1 = document.querySelector('h1')
-const p = document.querySelector('p')
-const pClass = document.querySelector('.parrafito')
-const pID = document.querySelector('#pid')
-const input = document.querySelector('input')
+const input1 = document.getElementById('calculo1')
+const input2 = document.getElementById('calculo2')
+const btn = document.getElementById('btnCalcular')
+const p = document.getElementById('result')
 
-// innerHTML permite modificar directamente archivos html
-// esto es peligroso y se recomienda, en vez, usar innerText
-h1.innerHTML = 'Patito <br>Feo' // inserta un salto de linea
-h1.innerText = 'Patito <br>Feo' // inserta solo texto
+// podemos "escuchar" eventos de elementos html usando js, esto se hace agregando
+// atributos como onClick (para button) u onChange (para input). Escribir js dentro 
+// de html es una mala práctica, por eso, "escuchar" los eventos se realiza usando 
+// funciones, por ejemplo:
+function btnOnClick(){
+    concatenacion = input1.value + input2.value
+    p.innerText = 'Resultado: ' + concatenacion
+}
 
-// la manera mas comun de modificar atributos html es con:
-// (1) getAttribute, donde obtenemos su valor desde HTML
-// (2) setAttribute, con el insertamos un atributo y su valor
-console.log(h1.getAttribute('class'))
-
-h1.setAttribute('class', 'rojo')
-console.log(h1.getAttribute('class'))
-
-// hablando especificamente de clases podemos usar classList
-// para agregar o remover valores:
-h1.classList.add('azul')
-console.log(h1.getAttribute('class'))
-
-h1.classList.remove('rojo')
-console.log(h1.getAttribute('class'))
-
-// existen otras funciones de classList como toggle y contains
-
-// si el atributo ya existe podemos modificarlo así:
-input.value = '456'
-console.log(input.value)
-
-// para crear elementos html desde 0 usamos:
-const img = document.createElement('img')
-img.setAttribute('src', 'https://images.pexels.com/photos/416160/pexels-photo-416160.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
-
-// para visualizar el elemento anterior lo insertamos en un
-// elemento previamente creado en nuestro html
-pID.append(img)
-
-// reto: remover el texto de pid y mostrar la imagen
-pID.innerText = ''
-pID.appendChild(img)
+// aunque el ejemplo anterior parece lo más adecuada, añadir eventos en html ocasiona
+// archivos caóticos, por lo que, una mejor práctica sería... (ver la siguiente clase).
